@@ -19,14 +19,8 @@ def bash(def context, String cmd) {
 }
 
 node('qa22') {
-    stage('stage1') {
+    stage('restore') {
         checkout scm
-        bash(delegate, 'hostname')
+        bash(delegate, 'restore.sh')
     }
-    stage('stage2') {
-        checkout scm
-        bash(delegate, 'whoami')
-    }
-
-
 }

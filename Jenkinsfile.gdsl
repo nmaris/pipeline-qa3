@@ -21,6 +21,7 @@ def bash(def context, String cmd) {
 node('qa22') {
     stage('restore') {
         checkout scm
+        bash(delegate, 'ls')
         bash(delegate, 'chmod 777 restore.sh')
         bash(delegate, 'sh restore.sh')
     }

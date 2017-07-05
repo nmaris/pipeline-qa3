@@ -20,7 +20,7 @@ def bash(def context, String cmd) {
 def script(def context, String filename) {
     bash(delegate, "chmod 777 ${filename}.sh")
     bash(context, "sh ${filename}.sh")
-
+}
 node('qa22') {
     stage('restore') {
         checkout scm

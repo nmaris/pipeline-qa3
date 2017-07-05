@@ -1,0 +1,26 @@
+#!/usr/bin/env groovy
+
+def bash(def context, String cmd) {
+    /**
+     * Runs sh command, captures stdout and stderr and fails job in case of non zero exit status
+     *
+     * To change folder, use the following before calling 'bash'
+     * https://jenkins.io/doc/pipeline/steps/workflow-basic-steps/#code-dir-code-change-current-directory
+     *
+     * If you have commands that need to be at the same shell, put them in a single command with '&&'
+     * For example: eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_rsapassport-qa-automation-framework && ...
+     */
+    try {
+        echo "$cmd"
+        sh (script: "$cmd")
+    } catch (Exception err) {
+        throw err
+    }
+}
+
+node('qa22') {
+    stage('stage1') {
+        checkout scm
+        bash(delegate, 'hostname')
+    }
+}

@@ -4,4 +4,4 @@ set -x
 set -e
 
 hostname
-ci
+whoami

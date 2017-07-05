@@ -17,12 +17,13 @@ def bash(def context, String cmd) {
         throw err
     }
 }
+def script(def context, String filename) {
+    bash(delegate, "chmod 777 ${filename}.sh")
+    bash(context, "sh ${filename}.sh")
 
 node('qa22') {
     stage('restore') {
         checkout scm
-        bash(delegate, 'ls')
-        bash(delegate, 'chmod 777 restore.sh')
-        bash(delegate, 'sh restore.sh')
+        script(delegate, 'restore')
     }
 }

@@ -23,4 +23,10 @@ node('qa22') {
         checkout scm
         bash(delegate, 'hostname')
     }
+    stage('stage2') {
+        checkout scm
+        bash(delegate, 'whoami')
+    }
+
+
 }

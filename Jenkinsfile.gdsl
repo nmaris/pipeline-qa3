@@ -22,8 +22,8 @@ def script(def context, String filename) {
     bash(context, "sh ${filename}.sh")
 }
 node('qa22') {
+    checkout scm
     stage('restore') {
-        checkout scm
         script(delegate, 'restore')
     }
 }
